@@ -32,8 +32,8 @@ struct ContentView: View {
                         .font(.system(size: 70, weight: .medium))
                         .foregroundColor(.white)
                 }
-                Spacer()
-                HStack(spacing: 20){
+                .padding(.bottom, 40)
+                HStack(spacing: 25){
                     
                     WeatherDayView(dayOfWeek: "TUE", imageName: "cloud.sun.fill", temperature: 74)
                     WeatherDayView(dayOfWeek: "WED", imageName: "sun.max.fill", temperature: 70)
@@ -99,6 +99,19 @@ struct ContentView: View {
 //                    }
                 }
                 Spacer()
+                
+                Button {
+                    //""
+                } label: {
+                    Text("Change Day Time")
+                        .frame(width: 280, height: 50)
+                        .background(Color.white)
+                        .font(.system(size: 20, weight: .bold, design: .default))
+                        .cornerRadius(10)
+                }
+
+                Spacer()
+                
             }
         }
     }
@@ -119,7 +132,7 @@ struct WeatherDayView: View {
     var body: some View {
         VStack(spacing: 12){
             Text(dayOfWeek)
-                .font(.system(size: 30, weight: .medium, design: .default))
+                .font(.system(size: 25, weight: .medium, design: .default))
                 .foregroundColor(.white)
             
             Image(systemName: imageName)
@@ -128,7 +141,7 @@ struct WeatherDayView: View {
                 .frame(width: 40, height: 40 )
                 .aspectRatio(contentMode: .fit)
             Text("\(temperature)°")
-                .font(.system(size: 30, weight: .medium, design: .default))
+                .font(.system(size: 28, weight: .medium, design: .default))
                 .foregroundColor(.white)
         }
     }
