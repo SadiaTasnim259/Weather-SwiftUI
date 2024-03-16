@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var isNight = false
     var body: some View {
         ZStack {
-            LinearGradient(colors: [.blue, Color("lightBlue")], startPoint: .topLeading, endPoint: .bottomTrailing)
-                .edgesIgnoringSafeArea(.all)
+            BackgroundView(topColor: isNight ? .black : .blue,
+                           bottomColor: isNight ? .gray : Color("lightBlue"))
 
-
+ 
             VStack {
                 Text("Cupertino, CA")
                     .font(.system(size: 32, weight: .medium, design: .default))
@@ -21,7 +22,7 @@ struct ContentView: View {
                     .padding()
 
                 VStack(spacing: 10) {
-                    Image(systemName: "cloud.sun.fill")
+                    Image(systemName: isNight ? "moon.stars.fill" : "cloud.sun.fill")
                         .renderingMode(.original)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -101,7 +102,7 @@ struct ContentView: View {
                 Spacer()
                 
                 Button {
-                    //""
+                    isNight.toggle()
                 } label: {
                     Text("Change Day Time")
                         .frame(width: 280, height: 50)
@@ -144,5 +145,15 @@ struct WeatherDayView: View {
                 .font(.system(size: 28, weight: .medium, design: .default))
                 .foregroundColor(.white)
         }
+    }
+}
+
+struct BackgroundView: View {
+    var topColor: Color
+    var bottomColor: Color
+    
+    var body: some View {
+        LinearGradient(colors: [topColor,bottomColor], startPoint: .topLeading, endPoint: .bottomTrailing)
+            .edgesIgnoringSafeArea(.all)
     }
 }
